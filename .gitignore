@@ -27,3 +27,13 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+node_modules
+*.pdf
+.ntvs_analysis.dat
+.ntvs_analysis.dat
+.ntvs_analysis.dat.tmp
+.vscode
+.orig
+.TMP
+coverage/
+.nyc_output/
