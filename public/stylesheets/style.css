@@ -1,0 +1,28 @@
+/* body {
+ background: #000;
+}
+#containt_warp{
+  display: inline-flex;
+  position: relative;
+}
+
+#left_sidebar, #right_sidebar{
+  width:20%;
+  height: 100%;
+}
+
+#left_sidebar, {
+  background: #ede;
+}
+
+#right_sidebar {
+  background: rgb(228, 13, 228);
+}
+
+#general_containt{
+  background: rgb(31, 161, 48);
+  width:50%;
+  height: 100%;
+}
+
+*/
