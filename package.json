@@ -1,11 +1,11 @@
 {
-  "name": "empty-project",
+  "name": "baraksite",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
-  "description": "emptyproject",
+  "description": "baraksite",
   "author": {
     "name": "Constantin",
     "email": ""
