@@ -31,27 +31,37 @@ function scrollPageNavItemsMoving(item, active) {
 
 function scrollNavHeaderZooming(down) {
     if (down) {
-        $(".warp_icon").animate({
-            "height": "35px",
-            "font-size": "25px",
-            "margin-top": "15px"
-        }, 500);
+        $("#hamburger_menu").animate({
+            "margin-top": "25px"
+        }, 200);
         $(".discript_title, .phone_title").animate({
             "opacity": 0,
             "height": "0px"
+        }, 100, ()=>{
+            
+            $(".warp_icon img").animate({
+                "width": "130px"
+            }, 500, () => {
+                $(".nav_item").animate({ "top": "145px" }, 100)
+            });
         })
-        $(".nav_item").animate({ "top": "115px" })
+       
+       
     } else {
-        $(".warp_icon").animate({
-            "height": "100px",
-            "font-size": "90px",
-            "margin-top": "35px"
-        }, 500);
+        $(".nav_item").animate({ "top": "135px" })
         $(".discript_title, .phone_title").animate({
             "opacity": 1,
-            "height": "100px"
-        })
-        $(".nav_item").animate({ "top": "135px" })
+            "height": "11vh"
+        },200)
+        $("#hamburger_menu").animate({
+            "margin-top": "115px"
+        }, 200);
+        $(".warp_icon img").animate({
+            "width": "25vh"
+        }, 500);
+       
+        
+        
     }
 }
 
@@ -67,12 +77,14 @@ function closeSection(item, right, left, rightSpeed, leftSpeed) {
 function openSections() {
     $(".section_right").animate({
         "right": "-1200px"
-    }, 500)
+    }, 500, ()=>{
+        $(".section_right").removeAttr("style");
+    })
     $(".section_left").animate({
         "left": "-1200px"
-    }, 500)
-    $(".section_right, .section_left").removeAttr("style");
-    firstSection_flag = false, secondSection_flag = false;
+    }, 500, ()=>{
+        $(".section_left").removeAttr("style");
+    })
 }
 
 function dropOurStory() {
@@ -200,7 +212,6 @@ function openImage(items) {
             })
 
         } else {
-            // $(".image_continer").on("click", openPreviewImage)
             resolve(true)
         }
     })
