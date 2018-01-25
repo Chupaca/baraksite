@@ -16,7 +16,7 @@ function scrollPageNavItemsMoving(item, active) {
     var navItem = item || ".nav_item";
     if (global_nav_flag && active) {
         flag_active = false;
-        $(navItem).each((i, item) => {
+        $(navItem).each(function (i, item) {
             setTimeout(function () {
                 $(item).addClass("active");
             }, i * 100);
@@ -37,31 +37,30 @@ function scrollNavHeaderZooming(down) {
         $(".discript_title, .phone_title").animate({
             "opacity": 0,
             "height": "0px"
-        }, 100, ()=>{
-            
+        }, 100, () => {
+
             $(".warp_icon img").animate({
                 "width": "130px"
             }, 500, () => {
                 $(".nav_item").animate({ "top": "145px" }, 100)
             });
         })
-       
-       
+
     } else {
         $(".nav_item").animate({ "top": "135px" })
         $(".discript_title, .phone_title").animate({
             "opacity": 1,
             "height": "11vh"
-        },200)
+        }, 200)
         $("#hamburger_menu").animate({
             "margin-top": "115px"
         }, 200);
         $(".warp_icon img").animate({
             "width": "25vh"
         }, 500);
-       
-        
-        
+
+
+
     }
 }
 
@@ -77,18 +76,18 @@ function closeSection(item, right, left, rightSpeed, leftSpeed) {
 function openSections() {
     $(".section_right").animate({
         "right": "-1200px"
-    }, 500, ()=>{
+    }, 500, () => {
         $(".section_right").removeAttr("style");
     })
     $(".section_left").animate({
         "left": "-1200px"
-    }, 500, ()=>{
+    }, 500, () => {
         $(".section_left").removeAttr("style");
     })
 }
 
 function dropOurStory() {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         $(".our_story").animate({
             "width": "51%",
             "opacity": "1",
@@ -102,7 +101,7 @@ function dropOurStory() {
 };
 
 function removeOurStory() {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         if ($(".our_story").length) {
             $(".our_story").animate({
                 "margin-left": "-57%"
@@ -117,7 +116,7 @@ function removeOurStory() {
 };
 
 function removeGallery() {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         if ($("#gallery_warp").length) {
             $(".image_continer").animate({
                 "margin-left": "-57%",
@@ -146,11 +145,11 @@ function removeAllViews() {
 }
 
 function openGeneralPage() {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         $("#general_containt").css(right_side_animation_generalcontaint);
         $(".our_story, .image_continer").css(right_side_animation);
         $("#general_containt").animate({ textIndent: 60 }, {
-            step: (now, fx) => {
+            step: function (now, fx) {
                 $("#general_containt").css({
                     'transform': 'perspective(1000px) rotateY(' + (-now) + 'deg)',
                     "border-right": (now / 3.5) + "px solid",
@@ -159,7 +158,7 @@ function openGeneralPage() {
                     "border-right": (now / 4) + "px solid",
                 })
             },
-            complete: () => {
+            complete: function () {
                 $("#general_containt").css({ "text-indent": "-60px" })
                 resolve(true);
             }
@@ -168,15 +167,15 @@ function openGeneralPage() {
 }
 
 function closeGeneralPage() {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         $("#general_containt").animate({ textIndent: 0 }, {
-            step: (now, fx) => {
+            step: function (now, fx) {
                 $("#general_containt").css({
                     'transform': 'perspective(1000px) rotateY(' + now + 'deg)',
                     "border": now / (-3)
                 });
             },
-            complete: () => {
+            complete: function () {
                 $("#general_containt").css({
                     "text-indent": "0"
                 })
@@ -187,7 +186,8 @@ function closeGeneralPage() {
 }
 
 function upPage() {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
+        $("#hamburger_menu").trigger("click");
         $('html,body').animate({ scrollTop: 0 }, 200, function () {
             resolve(true);
         })
@@ -195,17 +195,17 @@ function upPage() {
 }
 
 function openImage(items) {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         let item = items.shift();
         if (item) {
             $(item).animate({ textIndent: 110 }, {
-                step: (now, fx) => {
+                step: function (now, fx) {
                     $(item).css({
                         "display": "block",
                         "box-shadow": "inset 0px 1px 20px " + (120 - now) + "px" + " #727272"
                     });
                 },
-                complete: () => {
+                complete: function () {
                     $(item).on("click", openPreviewImage)
                     resolve(openImage(items))
                 }
@@ -215,4 +215,24 @@ function openImage(items) {
             resolve(true)
         }
     })
+};
+
+function MobileNav(way) {
+    Array.prototype.slice.call($(".nav_item")).reverse().forEach(function (item) {
+        if (way) {
+            $(item).slideDown("fast");
+        } else {
+            $(item).slideUp("fast");
+        }
+    })
+}
+
+function closeNav() {
+    if ($("#hamburger_menu").hasClass("opened")) {
+        $("#hamburger_menu").removeClass("opened").css({
+            'transform': 'rotate(' + 0 + 'deg)'
+        });
+        MobileNav(false);
+    }
+    return;
 }

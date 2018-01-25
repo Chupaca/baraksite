@@ -409,7 +409,7 @@ body {
 
     .nav_item{
         top: 180px;
-        display: block;
+        display: none;
         /* position: absolute; */
         text-align: center;
         color:#000;
@@ -426,24 +426,24 @@ body {
     }
     .nav_item:nth-child(5){
         right: 5px;
-        margin-top: 5px;
+        margin-top: 15px;
     }
     
     .nav_item:nth-child(4){
         right: 5px;
-        margin-top: 55px;
+        margin-top: 65px;
     }
     .nav_item:nth-child(3){
         right: 5px;
-        margin-top: 110px;
+        margin-top: 120px;
     }
     .nav_item:nth-child(2){
         right: 5px;
-        margin-top: 165px;
+        margin-top: 175px;
     }
     .nav_item:nth-child(1){
         right: 5px;
-        margin-top: 215px;
+        margin-top: 225px;
     }
     #gallery_warp{
         display: flex;
@@ -451,5 +451,8 @@ body {
         width: 75%;
         flex-flow: row wrap;
         justify-content: space-around;
+    }
+    .image_continer{
+        margin-right: 0;
     }
  }
